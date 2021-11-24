@@ -1,6 +1,6 @@
 import Loading2 from "../components/Loading2";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosInstance } from "../config";
 
 function TabeItem({ user, isDelete, isEdited, setIsDelete, setIsEdited }) {
   const { id, firstName, lastName, address, age, salary, gender } = user;
@@ -17,7 +17,7 @@ function TabeItem({ user, isDelete, isEdited, setIsDelete, setIsEdited }) {
   const deleteHandle = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete(`/delete/${id}/`);
+      await axiosInstance.delete(`/delete/${id}/`);
       isDelete ? setIsDelete(false) : setIsDelete(true);
     } catch (err) {}
   };
@@ -33,7 +33,7 @@ function TabeItem({ user, isDelete, isEdited, setIsDelete, setIsEdited }) {
       gender: genderUpdate,
     };
     try {
-      await axios.post(`/update/${id}/`, newUser);
+      await axiosInstance.post(`/update/${id}/`, newUser);
       isEdited ? setIsEdited(false) : setIsEdited(true);
     } catch (err) {}
     setBeginEdit(false);
@@ -42,7 +42,7 @@ function TabeItem({ user, isDelete, isEdited, setIsDelete, setIsEdited }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/detail/${id}/`);
+        const res = await axiosInstance.get(`/detail/${id}/`);
         setCurrentUser(res.data);
       } catch (err) {}
     };

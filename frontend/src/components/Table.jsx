@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TabeItem from "./TabeItem";
 import Loading from "../components/Loading";
 import "./table.css";
-import axios from "axios";
+import { axiosInstance } from "../config";
 
 function Table() {
   const [users, setUsers] = useState([]);
@@ -29,7 +29,7 @@ function Table() {
     };
     console.log(newUser);
     try {
-      await axios.post("/create/", newUser);
+      await axiosInstance.post("/create/", newUser);
       setFirstName("");
       setLastName("");
       setAddress("");
@@ -43,7 +43,7 @@ function Table() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("/list/");
+        const res = await axiosInstance.get("/list/");
         setUsers(res.data);
       } catch (err) {}
     };
