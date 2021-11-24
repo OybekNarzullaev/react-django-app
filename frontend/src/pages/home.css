@@ -1,0 +1,19 @@
+.home {
+  position: relative;
+  width: 100%;
+}
+
+span a {
+  text-decoration: none;
+  color: white;
+}
+.admin {
+  position: fixed;
+  background-color: blueviolet;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  bottom: 5px;
+  right: 5px;
+}
